@@ -22,16 +22,29 @@ def take_input(player_token):
         break
 def check_win():
     for each in win_lines:
-        if board([each[0]-1] == board[1]-1 == board[2]-1):
+        if board([each[0]-1] == each[1]-1 == each[2]-1):
             return board[each[1]-1]
         else:
             return False
 def main():
-    
+    counter = 0
+    while True:
+        draw_board()
+        if counter % 2 == 0:
+            take_input('X')
+        else:
+            take_input('O')
+        if counter > 3:
+            winner = check_win()
+            if winner:
+                draw_board()
+                print(winner, 'wins')
+                break
+        counter += 1
+        if counter > 8:
+            print('Ничья')
+            break
+main()
 
 
-
-draw_board()
-take_input('X')
-take_input('O')
 
